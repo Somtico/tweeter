@@ -21,13 +21,11 @@ nav span {
   flex-direction: column;
   align-items: center;
   margin-left: auto;
-}
-
-.newTweet p {
-  margin: 0; /* Remove the default margin of the paragraph element */
+  margin-top: -30px;
 }
 
 .fa-angles-down {
+  margin-top: -25px;
   color: rgb(239, 71, 71);
 }
 
