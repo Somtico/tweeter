@@ -1,0 +1,22 @@
+/* nav.css */
+
+nav {
+  display: flex;
+  flex-direction: row;
+  background: #4056A1;
+  color: #FFFFFF;
+  height: 120px;
+  padding: 60px 1.5em 0px 1.5em;
+  width: 100%;
+}
+
+nav div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+}
+
+.fa-angles-down {
+  color: rgb(239, 71, 71);
+}
