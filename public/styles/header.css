@@ -1,0 +1,22 @@
+/* header.css */
+
+header {
+  margin-top: 120px;
+  height: 400px;
+  width: 100%;
+  background-color: rgba(239, 216, 68, 0.947);
+  background-image: url("../images/background-image.png");
+}
+
+#avatar {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.username h2 {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
