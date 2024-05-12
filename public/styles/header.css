@@ -5,7 +5,7 @@ header {
   height: 400px;
   width: 100%;
   background-color: rgba(239, 216, 68, 0.947);
-  background-image: url("../images/background-image.png");
+  background-image: url("/images/background-image.png");
 }
 
 #avatar {
