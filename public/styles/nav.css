@@ -1,6 +1,8 @@
 /* nav.css */
 
 nav {
+  position: fixed;
+  top: 0;
   display: flex;
   flex-direction: row;
   background: #4056A1;
@@ -21,12 +23,14 @@ nav span {
   flex-direction: column;
   align-items: center;
   margin-left: auto;
-  margin-top: -30px;
+}
+
+.newTweet p {
+  margin: 0;
+  /* Remove the default margin of the paragraph element */
 }
 
 .fa-angles-down {
-  margin-top: -25px;
   color: rgb(239, 71, 71);
 }
-
 
