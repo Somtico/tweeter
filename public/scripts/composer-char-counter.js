@@ -1,7 +1,7 @@
 // composer-char-counter.js
 $(document).ready(function () {
   // Set character limit
-  charLimit = 140;
+  const charLimit = 140;
 
   // Register an event handler for the textarea element
   $("#tweet-text").on("input", function () {
