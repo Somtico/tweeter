@@ -13,6 +13,8 @@
   border-bottom: 5px solid black;
   background-color: inherit;
   resize: none;
+  outline: none; /* Ensure the default focus outline is removed */
+
 }
 
 .button-counter {
@@ -35,4 +37,9 @@
 /* Dim the color on hover */
 .button:hover {
   filter: brightness(70%); /* Reduce brightness to 70% */
+}
+
+/* Colour when character limit is exceeded */
+.counter.exceeded {
+  color: red; 
 }
