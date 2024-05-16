@@ -18,7 +18,6 @@ $(document).ready(function () {
 
     // Create the content section
     const $content = $("<p>").addClass("content").text(tweetData.content.text);
-    $tweet.append($content); // Insert content into tweet
 
     // Create the footer section
     const $footer = $("<footer>");
@@ -30,7 +29,7 @@ $(document).ready(function () {
     $icons.append($flagIcon, $repeatIcon, $heartIcon); // Insert the icons into the div element
     $footer.append($timeAgo, $icons); // Insert the time of tweet and icons into the footer
 
-    $tweet.append($header, $footer); // Insert the header and footer into the article element
+    $tweet.append($header, $content, $footer); // Insert the header, content and footer into the article element
 
     return $tweet;
   };
@@ -38,7 +37,7 @@ $(document).ready(function () {
   const renderTweets = function (tweets) {
     data.forEach(function (tweetData) {
       const $tweet = createTweetElement(tweetData);
-      $(".all-tweets").append($tweet);
+      $(".all-tweets").prepend($tweet);
     });
   };
 
