@@ -51,21 +51,21 @@
       </div>
     </header>
 
-    <!-- This section contains individual tweets -->
     <main class="container">
+      <!-- This section contains form to create a new tweet -->
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
-        <form class="tweet-form" action="/tweets" method="POST">
-          <!-- <label for="tweet-text">What are you humming about?</label> -->
+        <form id="tweet-form" action="/tweets" method="POST">
           <textarea name="text" id="tweet-text"
             placeholder="What are you humming about?"></textarea>
           <div class="button-counter">
-            <button type="submit" class="button">Tweet</button>
+            <button type="submit" id="create-tweet">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
       </section>
 
+      <!-- This section contains individual tweets -->
       <section class="all-tweets"></section>
     </main>
   </body>

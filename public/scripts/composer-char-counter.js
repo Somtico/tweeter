@@ -10,7 +10,7 @@ $(document).ready(function () {
     const inputLength = input.length;
 
     // Find the counter element within the parent container of the textarea
-    let counterElement = $(this).closest(".tweet-form").find(".counter");
+    let counterElement = $(this).closest("#tweet-form").find(".counter");
 
     // Calculate the number of characters left
     const charsLeft = charLimit - inputLength;

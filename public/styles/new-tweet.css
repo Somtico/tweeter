@@ -6,7 +6,7 @@ main {
   align-items: center;
 }
 
-.tweet-form {
+#tweet-form {
   display: flex;
   flex-direction: column;
 }
@@ -36,7 +36,7 @@ main {
   color: rgb(53, 51, 51);
 }
 
-.button {
+#create-tweet {
   background-color: #4056A1;
   color: white;
   border: 0;
@@ -44,7 +44,7 @@ main {
 }
 
 /* Dim the color on hover */
-.button:hover {
+#create-tweet:hover {
   filter: brightness(70%); /* Reduce brightness to 70% */
 }
 
