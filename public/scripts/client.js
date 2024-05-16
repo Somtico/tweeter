@@ -67,4 +67,23 @@ $(document).ready(function () {
   ];
 
   renderTweets(data);
+
+  // Attach an event listener to the form for posting new tweets
+  $("#tweet-form").on("submit", function (event) {
+    // Prevent the default form submission behaviour
+    event.preventDefault();
+
+    // Serialize the form data
+    let $str = $(this).serialize();
+
+    // Make an AJAX POST request to submit the serialized form data to the server
+    $.ajax({
+      url: "/tweets",
+      method: "POST",
+      data: $str,
+      error: function (error) {
+        console.log("Error posting tweet:", error);
+      },
+    });
+  });
 });
