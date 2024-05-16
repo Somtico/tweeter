@@ -14,7 +14,6 @@ $(document).ready(function () {
     $span.append($avatar, $name); // Insert avatar and name into the span element
     const $handle = $("<p>").addClass("handle").text(tweetData.user.handle);
     $header.append($span, $handle); // Insert span children and handle into header
-    $tweet.append($header); // Insert header into tweet
 
     // Create the content section
     const $content = $("<p>").addClass("content").text(tweetData.content.text);
@@ -35,7 +34,7 @@ $(document).ready(function () {
   };
 
   const renderTweets = function (tweets) {
-    data.forEach(function (tweetData) {
+    tweets.forEach(function (tweetData) {
       const $tweet = createTweetElement(tweetData);
       $(".all-tweets").prepend($tweet);
     });
