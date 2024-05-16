@@ -1,4 +1,5 @@
 // composer-char-counter.js
+
 $(document).ready(function () {
   // Set character limit
   const charLimit = 140;
