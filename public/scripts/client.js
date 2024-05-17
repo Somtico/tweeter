@@ -1,71 +1,56 @@
 // client.js
 
 $(document).ready(function () {
+  //////////////////////////////////
   // Function that returns tweet <article>
+  //////////////////////////////////
   const createTweetElement = function (tweetData) {
-    // Create the main article element for tweet
-    let $tweet = $("<article>").addClass("tweet");
-
-    //////////////////////////////////
-    // Create the header section
-    //////////////////////////////////
-    const $header = $("<header>");
-
-    // Create the avatar section
-    const $span = $("<span>").addClass("tweet-avatar");
-    const $avatar = $("<img>").attr("src", tweetData.user.avatars);
-    const $name = $("<p>").text(tweetData.user.name);
-
-    // Add avatar and name to the DOM
-    $span.append($avatar, $name);
-
-    // Create the handle
-    const $handle = $("<p>").addClass("handle").text(tweetData.user.handle);
-
-    // Add span children and handle to the DOM
-    $header.append($span, $handle);
-
-    //////////////////////////////////
-    // Create the content section
-    //////////////////////////////////
-    const $content = $("<p>").addClass("content").text(tweetData.content.text);
-
-    //////////////////////////////////
-    // Create the footer section
-    //////////////////////////////////
-    const $footer = $("<footer>");
-    // Use timeago.js format function directly to get "time ago" formatted string
     const formattedTimeAgo = timeago.format(tweetData.created_at);
-
-    // Create a <time> element with the 'timeago' class, and set its text to the formatted "time ago" string
-    const $timeAgo = $("<time>").addClass("timeago").text(formattedTimeAgo);
-
-    // Create the icon section
-    const $icons = $("<div>").addClass("icons");
-    const $flagIcon = $("<i>").addClass("fa-solid fa-flag");
-    const $repeatIcon = $("<i>").addClass("fa-solid fa-repeat");
-    const $heartIcon = $("<i>").addClass("fa-solid fa-heart");
-
-    // Add the icons to the DOM
-    $icons.append($flagIcon, $repeatIcon, $heartIcon);
-
-    // Add the time of tweet and icons to the DOM
-    $footer.append($timeAgo, $icons);
-
-    // Add the header, content and footer to the DOM
-    $tweet.append($header, $content, $footer);
-
-    return $tweet;
+    const tweetHTML = `
+      <article class="tweet" data-id="${tweetData.id}">
+        <header>
+          <span class="tweet-avatar">
+            <img src="${tweetData.user.avatars}" alt="User avatar" />
+            <p>${tweetData.user.name}</p>
+          </span>
+          <p class="handle">${tweetData.user.handle}</p>
+        </header>
+        <p class="content">${tweetData.content.text}</p>
+        <footer>
+          <time class="timeago">${formattedTimeAgo}</time>
+          <div class="icons">
+            <i class="fa-solid fa-flag"></i>
+            <i class="fa-solid fa-repeat"></i>
+            <i class="fa-solid fa-heart"></i>
+          </div>
+        </footer>
+      </article>
+    `;
+    return $(tweetHTML);
   };
 
+  //////////////////////////////////
+  // Function that displays the tweets
+  //////////////////////////////////
   const renderTweets = function (tweets) {
+    $(".all-tweets").empty(); // Clear existing tweets
+
+    // If there are no tweets
+    if (tweets.length === 0) {
+      $(".all-tweets").append("<p>No tweets to display.</p>");
+      return;
+    }
+
+    // If there are tweets
     tweets.forEach(function (tweetData) {
       const $tweet = createTweetElement(tweetData);
       $(".all-tweets").prepend($tweet);
     });
   };
 
+  //////////////////////////////////
   // Attach an event listener to the form for posting new tweets
+  //////////////////////////////////
   $("#tweet-form").on("submit", function (event) {
     // Prevent the default form submission behaviour
     event.preventDefault();
@@ -74,7 +59,9 @@ $(document).ready(function () {
     let $str = $(this).serialize();
 
     // Validate tweet content
-    const tweetContent = $(this).find("textarea").val().trim();
+    const tweetContent = $(this).find("textarea").val().trim(); // Remove leading and trailing white spaces
+
+    // If tweet form is empty
     if (!tweetContent) {
       alert("Tweet cannot be empty!");
       return;
@@ -88,6 +75,7 @@ $(document).ready(function () {
       success: function () {
         loadTweets(); // Reload tweets after posting
         $("#tweet-form")[0].reset(); // Clear the form
+        $(".counter").text(140); // Reset the character counter
       },
       error: function (error) {
         alert("Error posting tweet:", error);
@@ -95,7 +83,9 @@ $(document).ready(function () {
     });
   });
 
+  //////////////////////////////////
   // Function to load tweets from the server
+  //////////////////////////////////
   const loadTweets = function () {
     $.ajax({
       url: "http://localhost:8080/tweets",
