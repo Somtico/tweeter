@@ -73,13 +73,24 @@ $(document).ready(function () {
     // Serialize the form data
     let $str = $(this).serialize();
 
+    // Validate tweet content
+    const tweetContent = $(this).find("textarea").val().trim();
+    if (!tweetContent) {
+      alert("Tweet cannot be empty!");
+      return;
+    }
+
     // Make an AJAX POST request to submit the serialized form data to the server
     $.ajax({
       url: "/tweets",
       method: "POST",
       data: $str,
+      success: function () {
+        loadTweets(); // Reload tweets after posting
+        $("#tweet-form")[0].reset(); // Clear the form
+      },
       error: function (error) {
-        console.log("Error posting tweet:", error);
+        alert("Error posting tweet:", error);
       },
     });
   });
@@ -93,7 +104,7 @@ $(document).ready(function () {
         renderTweets(data);
       },
       error: function (error) {
-        console.log("Error loading tweets:", error);
+        alert("Error loading tweets:", error);
       },
     });
   };
