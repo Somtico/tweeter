@@ -2,6 +2,11 @@
 
 $(document).ready(function () {
   const charLimit = 140;
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
   //////////////////////////////////
   // Function that returns tweet <article>
   //////////////////////////////////
@@ -16,7 +21,7 @@ $(document).ready(function () {
           </span>
           <p class="handle">${tweetData.user.handle}</p>
         </header>
-        <p class="content">${tweetData.content.text}</p>
+        <p class="content">${escape(tweetData.content.text)}</p>
         <footer>
           <time class="timeago">${formattedTimeAgo}</time>
           <div class="icons">
@@ -36,13 +41,7 @@ $(document).ready(function () {
   const renderTweets = function (tweets) {
     $(".all-tweets").empty(); // Clear existing tweets
 
-    // If there are no tweets
-    if (tweets.length === 0) {
-      $(".all-tweets").append("<p>No tweets to display.</p>");
-      return;
-    }
-
-    // If there are tweets
+    // If there are tweets, render them
     tweets.forEach(function (tweetData) {
       const $tweet = createTweetElement(tweetData);
       $(".all-tweets").prepend($tweet);
