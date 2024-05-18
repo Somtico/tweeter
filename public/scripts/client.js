@@ -1,6 +1,7 @@
 // client.js
 
 $(document).ready(function () {
+  const charLimit = 140;
   //////////////////////////////////
   // Function that returns tweet <article>
   //////////////////////////////////
@@ -67,6 +68,12 @@ $(document).ready(function () {
       return;
     }
 
+    // If user types more than the character limit
+    if (tweetContent.length > charLimit) {
+      alert("Character limit exceeded!");
+      return;
+    }
+
     // Make an AJAX POST request to submit the serialized form data to the server
     $.ajax({
       url: "/tweets",
@@ -75,7 +82,7 @@ $(document).ready(function () {
       success: function () {
         loadTweets(); // Reload tweets after posting
         $("#tweet-form")[0].reset(); // Clear the form
-        $(".counter").text(140); // Reset the character counter
+        $(".counter").text(charLimit); // Reset the character counter
       },
       error: function (error) {
         alert("Error posting tweet:", error);
