@@ -54,7 +54,11 @@
 
     <main class="container">
       <!-- This section contains form to create a new tweet -->
-      <section class="new-tweet">
+      <section class="new-tweet" >
+        <div class="error">
+          <h2><i class="fa-solid fa-circle-exclamation"></i> There is a problem!</h2>
+          <p id="error-message"></p>
+        </div>
         <h2>Compose Tweet</h2>
         <form id="tweet-form" action="/tweets" method="POST">
           <textarea name="text" id="tweet-text"

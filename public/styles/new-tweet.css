@@ -52,3 +52,24 @@ main {
 .counter.exceeded {
   color: red; 
 }
+
+.error {
+  background-color: #ffcccb; /* Light red background */
+  color: #d8000c; /* Red text */
+  border: 1px solid #d8000c; /* Red border */
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  display: none; /* Initially hidden */
+}
+
+.error h2 {
+  margin: 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.error h2 i {
+  margin-right: 5px;
+}

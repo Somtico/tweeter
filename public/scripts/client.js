@@ -63,15 +63,18 @@ $(document).ready(function () {
 
     // If tweet form is empty
     if (!tweetContent) {
-      alert("Tweet cannot be empty!");
+      showError("Tweet cannot be empty!");
       return;
     }
 
     // If user types more than the character limit
     if (tweetContent.length > charLimit) {
-      alert("Character limit exceeded!");
+      showError("Character limit exceeded!");
       return;
     }
+
+    // Hide error message if validation passes
+    hideError();
 
     // Make an AJAX POST request to submit the serialized form data to the server
     $.ajax({
@@ -84,11 +87,26 @@ $(document).ready(function () {
         $(".counter").text(charLimit); // Reset the character counter
       },
       error: function (error) {
-        alert("Error posting tweet:", error);
+        showError("Error posting tweet:", error);
       },
     });
   });
 
+  //////////////////////////////////
+  // Function to show error message
+  //////////////////////////////////
+  const showError = function (message) {
+    $("#error-message").text(message);
+    $(".error").slideDown();
+  };
+  
+  //////////////////////////////////
+  // Function to hide error message
+  //////////////////////////////////
+  const hideError = function () {
+    $(".error").slideUp();
+  }
+  
   //////////////////////////////////
   // Function to load tweets from the server
   //////////////////////////////////
@@ -100,7 +118,7 @@ $(document).ready(function () {
         renderTweets(data);
       },
       error: function (error) {
-        alert("Error loading tweets:", error);
+        showError("Error loading tweets:", error);
       },
     });
   };
