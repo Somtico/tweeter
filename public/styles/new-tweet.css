@@ -1,11 +1,5 @@
 /* new-tweet.css */
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 #tweet-form {
   display: flex;
   flex-direction: column;
