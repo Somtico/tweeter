@@ -71,3 +71,18 @@
 .icons i:hover {
   color: rgb(207, 192, 79);
 }
+
+/* Desktop layout */
+@media only screen and (min-width: 1225px) {
+  .hero {
+    width: 33.3%;
+    float: left;
+    margin-top: 50px;
+    padding-left: 50px;
+  }
+
+  .container {
+    width: 66.7%;
+    margin-top: 200px;
+  }
+}
